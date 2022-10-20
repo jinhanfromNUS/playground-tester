@@ -1,23 +1,21 @@
 // differnces of using stream and list
 
 function skip_by_3(start, end) {
-    if (start % 3 !== 0) {
-        return skip_by_3(start + 1, end);
-    } else {
-        return start > end
-              ? null
-              : pair(start, skip_by_3(start + 3, end));
-    }
+    start > end
+    ? null
+    : (start % 3 !== 0)
+    ? skip_by_3(start+1, end)
+    : pair(start, skip_by_3(start + 3, end));
 }
 
 skip_by_3(4, 28);
 
-//can use while loop as well
+
 
 // function skip_by_3_by_num(initial, n) {
 //     return n === 0
 //           ? null
-//           : pair(initial, skip_by_3_by_num(initial + 3, n -1));
+//           : pair(initial, skip_by_3_by_num(initial + 3, n - 1));
 // }
 
 // skip_by_3_by_num(2, 30);
