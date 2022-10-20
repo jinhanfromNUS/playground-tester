@@ -1,3 +1,4 @@
+//differnces of using stream and list
 
 //filter using stream method
 function filter_with_stream(start, end) {
