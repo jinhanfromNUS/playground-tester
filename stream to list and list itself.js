@@ -1,26 +1,42 @@
 // differnces of using stream and list
 
-function skip_by_3(start, end) {
+function factors_of_3(start, end) {
     return start > end
            ? null
            : (start % 3 !== 0)
-           ? skip_by_3(start+1, end)
-           : pair(start, skip_by_3(start + 3, end));
+           ? factors_of_3(start+1, end)
+           : pair(start, factors_of_3(start + 3, end));
 }
 
-skip_by_3(4, 28);
+factors_of_3(4, 28);
 
-function skip_by_3_stream(start, end) {
+function factors_of_3_stream(start, end) {
     return start > end
            ? null
            : (start % 3 !== 0)
-           ? skip_by_3_stream(start+1, end)
-           : pair(start, () => skip_by_3_stream(start + 3, end));
+           ? factors_of_3_stream(start+1, end)
+           : pair(start, () => factors_of_3_stream(start + 3, end));
 }
 
-skip_by_3_stream(8, 100);
-eval_stream(skip_by_3_stream(8, 100), 3);
+factors_of_3_stream(8, 100);
+eval_stream(factors_of_3_stream(8, 100), 3);
 
+//finding the factors of n, from a list
+function factors_of_n(n, start, end) {
+    return start > end
+           ? null
+           : (start % n !== 0)
+           ? factors_of_n(n, start + 1, end)
+           : pair(start, factors_of_n(n, start + n, end));
+}
+
+function factors_of_n(n, start, end) {
+    return filter(x => x % n === 0, enum_list(start, end));
+}
+
+factors_of_n(5, 4, 30);
+
+//create a list of n length, where the digits are 3 difference from the previous
 function skip_by_3_by_num(initial, n) {
     return n === 0
           ? null
